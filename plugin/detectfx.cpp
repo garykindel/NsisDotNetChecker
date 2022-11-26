@@ -105,7 +105,11 @@ const int g_dwNetfx48Win10ReleaseVersion = 528040;
 const int g_dwNetfx48ReleaseVersion = 528049;
 
 // Version information for final release of .NET Framework 4.8.1
+const int g_dwNetfx481Win11ReleaseVersion = 533320;
 const int g_dwNetfx481ReleaseVersion = 533325;
+
+
+// => https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed
 
 //https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies
 //https://learn.microsoft.com/en-us/dotnet/framework/deployment/deployment-guide-for-developers?redirectedfrom=MSDN
@@ -903,7 +907,7 @@ bool IsNetfx481Installed()
 
 	if (RegistryGetValue(HKEY_LOCAL_MACHINE, g_szNetfx48RegKeyName, g_szNetfx48RegValueName, NULL, (LPBYTE)& dwRegValue, sizeof(DWORD)))
 	{
-		if (g_dwNetfx481ReleaseVersion <= dwRegValue)
+		if (g_dwNetfx481ReleaseVersion <= dwRegValue || g_dwNetfx481Win11ReleaseVersion <= dwRegValue)
 			bRetValue = true;
 	}
 
